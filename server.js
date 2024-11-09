@@ -1,11 +1,13 @@
 const express = require('express');
+const connectDb = require("./config/dbConnection.js");
 const dotenv = require('dotenv').config();
 const contactsRouter = require('./routes/contactRoutes.js');
 const errorHandler = require('./middleware/errorHandler.js');
+const { connect } = require('mongoose');
 
 // // Use the router
 // app.use('/contacts', contactsRouter);
-
+connectDb();
 const app = express();
 
 const port = process.env.PORT || 5670;

@@ -4,11 +4,22 @@ const dotenv = require('dotenv').config();
 const contactsRouter = require('./routes/contactRoutes.js');
 const errorHandler = require('./middleware/errorHandler.js');
 const { connect } = require('mongoose');
+const cors = require('cors');
+
 
 // // Use the router
 // app.use('/contacts', contactsRouter);
 connectDb();
 const app = express();
+
+// Allow requests from specific origin
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend's URL
+}));
+
+// For all routes
+app.options('*', cors());
+
 
 const port = process.env.PORT || 5670;
 app.use(express.json());
